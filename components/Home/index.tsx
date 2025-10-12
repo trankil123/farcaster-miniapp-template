@@ -18,8 +18,8 @@ export function Demo() {
         <FarcasterActions />
         <NotificationActions />
         <WalletActions />
-        <CustomOGImageAction />
-        <Haptics />
+     //   <CustomOGImageAction />
+    //    <Haptics />
       </div>
     </div>
   )
