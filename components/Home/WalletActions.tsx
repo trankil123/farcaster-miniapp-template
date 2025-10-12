@@ -79,7 +79,7 @@ export function WalletActions() {
             </div>
                 
                 
-                
+               /* 
                 <button
                   type="button"
                   className="bg-white text-black rounded-md p-2 text-sm"
@@ -101,6 +101,9 @@ export function WalletActions() {
                     View Transaction
                   </button>
                 )}
+
+                */
+                
               </div>
             ) : (
               <button
