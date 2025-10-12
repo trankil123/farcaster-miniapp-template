@@ -48,7 +48,7 @@ mettre l'adresse de votre contract ici
 
 
   etape 3
-  deployer le git sur vercel (gratuit)
+  deployer le git sur vercel (gratuit) https://vercel.com/
   récupèrer l'adresse de l'appli : exemple : farcaster-miniapp-template-ebon.vercel.app
   la modifier dans .env.local
 
