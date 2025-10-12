@@ -6,7 +6,7 @@ export async function GET() {
     // TODO: Add your own account association
     frame: {
       version: "1",
-      name: "Monad Farcaster MiniApp Template",
+      name: "Trankil Farcaster MiniApp Template",
       iconUrl: `${APP_URL}/images/icon.png`,
       homeUrl: `${APP_URL}`,
       imageUrl: `${APP_URL}/images/feed.png`,
