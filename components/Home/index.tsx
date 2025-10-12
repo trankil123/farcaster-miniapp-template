@@ -8,6 +8,8 @@ import CustomOGImageAction from './CustomOGImageAction'
 import { Haptics } from './Haptics'
      //   <CustomOGImageAction />
     //    <Haptics />
+// <FarcasterActions />
+//        <NotificationActions />
 export function Demo() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-4 space-y-8">
@@ -15,10 +17,10 @@ export function Demo() {
         base Farcaster MiniApp Template
       </h1>
       <div className="w-full max-w-4xl space-y-6">
-        <WalletActions />
         <User />
-        <FarcasterActions />
-        <NotificationActions />
+           <WalletActions />
+        
+       
         
       </div>
     </div>
