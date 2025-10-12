@@ -78,32 +78,6 @@ export function WalletActions() {
             </button>
             </div>
                 
-                
-               /* 
-                <button
-                  type="button"
-                  className="bg-white text-black rounded-md p-2 text-sm"
-                  onClick={sendTransactionHandler}
-                >
-                  Send Transaction
-                </button>
-                {hash && (
-                  <button
-                    type="button"
-                    className="bg-white text-black rounded-md p-2 text-sm"
-                    onClick={() =>
-                      window.open(
-                        `https://basescan.org/tx/${hash}`,
-                        '_blank',
-                      )
-                    }
-                  >
-                    View Transaction
-                  </button>
-                )}
-
-                */
-                
               </div>
             ) : (
               <button
