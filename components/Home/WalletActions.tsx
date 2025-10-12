@@ -32,7 +32,7 @@ export function WalletActions() {
     try {
       await sendTransaction({
         to: contractAddress,
-        value: parseEther('0.001'), // Montant ETH par vote
+        value: parseEther('0.000001'), // Montant ETH par vote
       })
       alert(`Transaction ${message} envoyée !`)
     } catch (err) {
