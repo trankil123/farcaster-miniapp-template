@@ -11,7 +11,7 @@ export async function GET() {
       homeUrl: `${APP_URL}`,
       imageUrl: `${APP_URL}/images/feed.png`,
       screenshotUrls: [],
-      tags: ["monad", "farcaster", "miniapp", "template"],
+      tags: ["Base", "farcaster", "miniapp", "template"],
       primaryCategory: "developer-tools",
       buttonTitle: "Launch Template",
       splashImageUrl: `${APP_URL}/images/splash.png`,
