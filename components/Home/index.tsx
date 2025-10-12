@@ -6,7 +6,8 @@ import { WalletActions } from '@/components/Home/WalletActions'
 import { NotificationActions } from './NotificationActions'
 import CustomOGImageAction from './CustomOGImageAction'
 import { Haptics } from './Haptics'
-
+     //   <CustomOGImageAction />
+    //    <Haptics />
 export function Demo() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-4 space-y-8">
@@ -18,8 +19,6 @@ export function Demo() {
         <FarcasterActions />
         <NotificationActions />
         <WalletActions />
-     //   <CustomOGImageAction />
-    //    <Haptics />
       </div>
     </div>
   )
