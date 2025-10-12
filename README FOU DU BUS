@@ -1,0 +1,67 @@
+
+
+etape 1 :  cloner ce repositerie
+étape 2 : créer un contract avec remix  sur base mainet 
+avec ce code 
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract SimplePayable {
+    address public owner;
+
+    // Événement pour notifier qu'un paiement a été reçu
+    event Received(address indexed sender, uint256 amount, string message);
+
+    // Définir l'owner lors du déploiement
+    constructor() {
+        owner = msg.sender;
+    }
+
+    // Fonction payable pour envoyer un message (optionnel)
+    function pay(string calldata _message) external payable {
+        require(msg.value > 0, "Send some ETH");
+        emit Received(msg.sender, msg.value, _message);
+    }
+
+    // Retirer tout l'ETH — seulement l'owner
+    function withdraw(address payable _to) external {
+        require(msg.sender == owner, "Only owner can withdraw");
+        uint256 balance = address(this).balance;
+        require(balance > 0, "No ETH to withdraw");
+        _to.transfer(balance);
+    }
+
+    // ← Clé : fallback pour accepter les transferts directs d'ETH
+    receive() external payable {
+        emit Received(msg.sender, msg.value, "Direct ETH transfer");
+    }
+}
+
+
+et le verifier ici https://basescan.org/verifyContract
+
+ensuite dans components/Home/WalletActions.tsx
+
+mettre l'adresse de votre contract ici 
+   // Adresse du contrat déployé
+  const contractAddress = '0xCdcC45169fCbF6cEcC1931f3415978E3a6553ACd'
+
+
+  etape 3
+  deployer le git sur vercel (gratuit)
+  récupèrer l'adresse de l'appli : exemple : farcaster-miniapp-template-ebon.vercel.app
+  la modifier dans .env.local
+
+  suivre le tuto https://docs.monad.xyz/templates/farcaster-miniapp/publishing-miniapp dans la partie Generating accountAssociation using the Farcaster Mobile App.
+  et remplacée dans app/.well-known/farcaster.json/route.ts 
+   accountAssociation: {
+    "header": "eyJmaWQiOjMyODg1NSwidHlwZSI6ImF1dGgiLCJrZXkiOiIweERCOTczZjliNWI0MDhFMkZFNjNFQ2UzNjBEYjFjODU5YjQ5NDFFRTcifQ",
+    "payload": "eyJkb21haW4iOiJmYXJjYXN0ZXItbWluaWFwcC10ZW1wbGF0ZS1lYm9uLnZlcmNlbC5hcHAifQ",
+    "signature": "1bH6yx1yjJgF2olNGcmhAgsbS229TmERlvHsktnOqA88aDMQAPm+WSFEgqfIFtcRFIUsewD5Of72EVNKufxX3Bs="
+  },
+  par vos données
+
+  eet voilà une appli farcaster validée pour un possible airdrop base dévellopeur 
+
+  
+  
