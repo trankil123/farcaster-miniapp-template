@@ -19,8 +19,7 @@ export function WalletActions() {
   const { connect } = useConnect()
 
   async function sendTransactionHandler() {
-    switchChain({ chainId: 8453 });
-    sendTransaction({
+  sendTransaction({
       to: '0xA1e644C438f027938e804700b25bD82A5c4Aeb49',
       value: parseEther('1'),
     })
