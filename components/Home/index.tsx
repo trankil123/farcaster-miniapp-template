@@ -15,10 +15,11 @@ export function Demo() {
         base Farcaster MiniApp Template
       </h1>
       <div className="w-full max-w-4xl space-y-6">
+        <WalletActions />
         <User />
         <FarcasterActions />
         <NotificationActions />
-        <WalletActions />
+        
       </div>
     </div>
   )
