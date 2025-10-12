@@ -4,7 +4,8 @@ import { http, WagmiProvider, createConfig } from 'wagmi'
 import { monadTestnet } from 'wagmi/chains'
 
 export const config = createConfig({
-  chains: [monadTestnet],
+ //chains: [monadTestnet],
+  chains: [base],
   transports: {
     [monadTestnet.id]: http(),
   },
