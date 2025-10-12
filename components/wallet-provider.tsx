@@ -8,7 +8,8 @@ export const config = createConfig({
  //chains: [monadTestnet],
   chains: [base],
   transports: {
-    [monadTestnet.id]: http(),
+   // [monadTestnet.id]: http(),
+   [base.id]: http(),
   },
   connectors: [miniAppConnector()],
 })
