@@ -7,11 +7,9 @@ import {
   useDisconnect,
   useSwitchChain,
   useWriteContract,
-  useReadContract,
 } from 'wagmi'
-import { useState, useEffect } from 'react'
 
-// ABI inline pour vote(bool) et getResults()
+// ABI inline pour vote(bool)
 const contractAbi = [
   {
     inputs: [{ internalType: 'bool', name: '_yes', type: 'bool' }],
@@ -20,19 +18,9 @@ const contractAbi = [
     stateMutability: 'nonpayable',
     type: 'function',
   },
-  {
-    inputs: [],
-    name: 'getResults',
-    outputs: [
-      { internalType: 'uint256', name: 'yes', type: 'uint256' },
-      { internalType: 'uint256', name: 'no', type: 'uint256' },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
 ]
 
-export function OnchainVoteApp() {
+export function WalletActions() {
   const { isEthProviderAvailable } = useFrame()
   const { isConnected, address, chainId } = useAccount()
   const { disconnect } = useDisconnect()
@@ -41,10 +29,6 @@ export function OnchainVoteApp() {
   const { writeContract } = useWriteContract()
 
   const contractAddress = '0xA1e644C438f027938e804700b25bD82A5c4Aeb49'
-
-  // State pour afficher les résultats
-  const [yesCount, setYesCount] = useState<number>(0)
-  const [noCount, setNoCount] = useState<number>(0)
 
   // Fonction pour voter
   async function handleVote(voteValue: boolean) {
@@ -56,36 +40,11 @@ export function OnchainVoteApp() {
         args: [voteValue],
       })
       alert(`Vote ${voteValue ? 'Yes' : 'No'} envoyé ✅`)
-      fetchResults()
     } catch (err) {
       console.error(err)
       alert('❌ Transaction échouée — vous avez peut-être déjà voté')
     }
   }
-
-  // Fonction pour récupérer les résultats
-  async function fetchResults() {
-    try {
-      const result: { yes: bigint; no: bigint } = await useReadContract({
-        address: contractAddress,
-        abi: contractAbi,
-        functionName: 'getResults',
-      })
-      setYesCount(Number(result.yes))
-      setNoCount(Number(result.no))
-    } catch (err) {
-      console.error('Erreur lecture résultats:', err)
-    }
-  }
-
-  // Mise à jour des résultats toutes les 5 secondes
-  useEffect(() => {
-    if (isConnected) {
-      fetchResults()
-      const interval = setInterval(fetchResults, 5000)
-      return () => clearInterval(interval)
-    }
-  }, [isConnected])
 
   // Affichage si connecté
   if (isConnected) {
@@ -97,24 +56,19 @@ export function OnchainVoteApp() {
         </p>
 
         {chainId === base.id ? (
-          <div className="flex flex-col items-center space-y-4">
-            <div className="flex space-x-4">
-              <button
-                onClick={() => handleVote(true)}
-                className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
-              >
-                👍 Yes
-              </button>
-              <button
-                onClick={() => handleVote(false)}
-                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
-              >
-                👎 No
-              </button>
-            </div>
-            <div className="text-white text-lg mt-2">
-              Résultats : {yesCount} 👍 / {noCount} 👎
-            </div>
+          <div className="flex space-x-4">
+            <button
+              onClick={() => handleVote(true)}
+              className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+            >
+              👍 Yes
+            </button>
+            <button
+              onClick={() => handleVote(false)}
+              className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+            >
+              👎 No
+            </button>
           </div>
         ) : (
           <button
@@ -135,7 +89,7 @@ export function OnchainVoteApp() {
     )
   }
 
-  // Affichage si le provider est disponible mais pas connecté
+  // Affichage si provider disponible mais non connecté
   if (isEthProviderAvailable) {
     return (
       <div className="space-y-4 border border-gray-700 rounded-2xl p-6">
@@ -150,7 +104,7 @@ export function OnchainVoteApp() {
     )
   }
 
-  // Affichage si aucun provider disponible
+  // Affichage si aucun provider
   return (
     <div className="space-y-4 border border-gray-700 rounded-2xl p-6">
       <h2 className="text-xl font-bold text-white">Wallet Provider not available</h2>
