@@ -21,7 +21,7 @@ export function WalletActions() {
   async function sendTransactionHandler() {
   sendTransaction({
       to: '0xA1e644C438f027938e804700b25bD82A5c4Aeb49',
-      value: parseEther('0.000000001'),
+      value: parseEther('0.000001'),
     })
   }
 
