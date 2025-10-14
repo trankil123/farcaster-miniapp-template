@@ -1,6 +1,44 @@
+bonjour à tous
+ voici un guide pour créer une mini apps sur Farcaster 
+
+préambule : Je ne suis pas codeur j'ai bidouillé avec ChatGpt int
+
+objectifs : 
+- gagner des points sur Talent Protocol en ayant des interactions de différents wallets sur le contract créé
+- se positionner comme un dévellopeur sur base en vue d'un potentiel airdrop
+
+Introduction : 
+Je me suis basé sur un template fournis par Monad pour créer sa minidapps sur Farcaster
+j'ai volontairement viré des fonctions inutiles
+j'ai modifié le design, mais il reste des traces du mot Monad (on s'en fout un peu mais bon)
+
+Ce que vous aurez besoin : 
+
+- un compte github (gratuit)
+- un compte vercel (gratuit)
+- un compte farcaster (evidemment)
+- savoir publier un contract avec Remix
+
+pour me remercier jaimerais bien que vous mettiez une étoile sur le repositery et que vous le forkiez
+
+Ce que l'appli fait : 
+- vous répondez oui ou non à une question et vous interragissez avec un contract sur base mainet
+- pas d'affichage des résultats du sondage
 
 
-etape 1 :  cloner ce repositerie
+Voici le lien vers le fichier d'aide en français : 
+https://github.com/trankil123/farcaster-miniapp-template/blob/main/README%202%20all%20process
+
+et le repository à fork 
+https://github.com/trankil123/farcaster-miniapp-template/
+
+have fun 
+
+ps : comme je ne suis pas codeur, j'essayerais de répondre à vos questions dans la limite de mes connaissances
+
+
+
+etape 1 :  cloner ce repository
 étape 2 : créer un contract avec remix  sur base mainet 
 avec ce code 
 // SPDX-License-Identifier: MIT
