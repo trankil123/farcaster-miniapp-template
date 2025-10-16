@@ -289,6 +289,16 @@ You can learn more about publishing the Mini App and other manifest properties [
 
 In this guide, you explored Farcaster Mini Apps — the simplest way to create engaging, high-retention, and easily monetizable applications!
 
+## Verify contract on Base (Basescan)
+
+After deploying `SimplePayable` on Base Mainnet with Remix:
+1. Copy your contract address
+2. Open https://basescan.org/verifyContract
+3. Select "Single file" and paste the Solidity snippet from the guide
+4. Set compiler version to `0.8.20`, License `MIT`
+5. Submit – once verified, copy the Basescan URL and put it in your README.
+
+
 You also discovered the key capabilities of Mini Apps and how you can use the [Monad Farcaster MiniApp Template](https://github.com/monad-developers/monad-miniapp-template) to build your own.
 
 For more details, check out the official Mini App documentation [here](https://miniapps.farcaster.xyz/).
