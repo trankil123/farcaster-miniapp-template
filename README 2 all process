@@ -82,7 +82,7 @@ et le verifier ici https://basescan.org/verifyContract
 
 ensuite dans components/Home/WalletActions.tsx
 
-mettre l'adresse de votre contract ici 
+mettre l'adresse de votre contract ci dessous à la place de 0xCdcC45169fCbF6cEcC1931f3415978E3a6553ACd  
    // Adresse du contrat déployé
   const contractAddress = '0xCdcC45169fCbF6cEcC1931f3415978E3a6553ACd'
 
