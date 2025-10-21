@@ -87,6 +87,9 @@ mettre l'adresse de votre contract ci dessous à la place de 0xCdcC45169fCbF6cEc
   const contractAddress = '0xCdcC45169fCbF6cEcC1931f3415978E3a6553ACd'
 
 
+dans components/Home/FarcasterActions.tsx   changer le fid:xxx par votre ID que vous pouvez trouver dans votre profil farcaster
+
+
   etape 3
   deployer le git sur vercel (gratuit) https://vercel.com/
   récupèrer l'adresse de l'appli : exemple : farcaster-miniapp-template-ebon.vercel.app
