@@ -1,5 +1,5 @@
 bonjour à tous
- voici un guide pour créer une mini apps sur Farcaster 
+ voici un guide pour créer une mini apps sur Farcaster (merci à Trankil  https://github.com/trankil123/ allez le follow/stars)
 
 préambule : Je ne suis pas codeur j'ai bidouillé avec ChatGpt int
 
@@ -21,7 +21,7 @@ Ce que vous aurez besoin :
 
 pour me remercier jaimerais bien que 
 - vous mettiez une étoile sur le repositery et que vous le forkiez
-- vous fassiez une transaction à partir de mon app https://farcaster.xyz/trankil.eth/0x6d2ede72
+- vous fassiez une transaction à partir de mon app https://farcaster.xyz/miniapps/02jVRRndMXqJ/farcaster-miniapp
 
 Ce que l'appli fait : 
 - vous répondez oui ou non à une question et vous interragissez avec un contract sur base mainet
@@ -32,7 +32,7 @@ Voici le lien vers le fichier d'aide en français :
 https://github.com/trankil123/farcaster-miniapp-template/blob/main/README%202%20all%20process
 
 et le repository à fork 
-https://github.com/trankil123/farcaster-miniapp-template/
+https://github.com/2explos/farcaster-miniapp-template
 
 have fun 
 
