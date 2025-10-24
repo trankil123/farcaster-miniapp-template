@@ -43,35 +43,52 @@ ps : comme je ne suis pas codeur, j'essayerais de répondre à vos questions dan
 etape 1 :  cloner ce repository
 étape 2 : créer un contract avec remix  sur base mainet 
 avec ce code 
-// SPDX-License-Identifier: MIT
+
+/ SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
+/// @title SimplePayable (standalone, no imports)
+/// @notice Reçoit des paiements avec message et permet à l'owner de retirer.
+/// @dev Inclut un garde anti-réentrance minimaliste, sans OpenZeppelin.
 contract SimplePayable {
-    address public owner;
+    address public immutable owner;
 
-    // Événement pour notifier qu'un paiement a été reçu
+    // Garde anti-réentrance simple
+    bool private _entered;
+    modifier nonReentrant() {
+        require(!_entered, "Reentrancy");
+        entered = true;
+        ;
+        _entered = false;
+    }
+
     event Received(address indexed sender, uint256 amount, string message);
+    event Withdrawn(address indexed to, uint256 amount);
 
-    // Définir l'owner lors du déploiement
     constructor() {
         owner = msg.sender;
     }
 
-    // Fonction payable pour envoyer un message (optionnel)
+    /// @notice Envoie un petit montant avec un message
     function pay(string calldata _message) external payable {
         require(msg.value > 0, "Send some ETH");
         emit Received(msg.sender, msg.value, _message);
     }
 
-    // Retirer tout l'ETH — seulement l'owner
-    function withdraw(address payable _to) external {
+    /// @notice Retire l’intégralité du solde du contrat vers _to (owner uniquement)
+    function withdraw(address payable _to) external nonReentrant {
         require(msg.sender == owner, "Only owner can withdraw");
         uint256 balance = address(this).balance;
         require(balance > 0, "No ETH to withdraw");
-        _to.transfer(balance);
+
+        // Envoi du solde. Pas d’état après l’appel externe, garde anti-réentrance active.
+        (bool success, ) = _to.call{value: balance}("");
+        require(success, "Withdraw failed");
+
+        emit Withdrawn(_to, balance);
     }
 
-    // ← Clé : fallback pour accepter les transferts directs d'ETH
+    /// @notice Accepte les transferts directs
     receive() external payable {
         emit Received(msg.sender, msg.value, "Direct ETH transfer");
     }
