@@ -1,4 +1,4 @@
-# Monad Farcaster MiniApp Template
+#  Farcaster MiniApp Template
 
 The template demonstrates all Mini App capabilities and lets you easily modify it, so you can build Mini Apps.
 
