@@ -9,7 +9,7 @@ const frame = {
     title: 'Launch Template',
     action: {
       type: 'launch_frame',
-      name: 'Trankil Farcaster MiniApp',
+      name: 'dz Farcaster MiniApp',
       url: APP_URL,
       splashImageUrl: `${APP_URL}/images/splash.png`,
       splashBackgroundColor: '#f7f7f7',
@@ -19,9 +19,9 @@ const frame = {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Trankil Farcaster MiniApp',
+    title: 'dz Farcaster MiniApp',
     openGraph: {
-      title: 'Trankil Farcaster MiniApp',
+      title: 'dz Farcaster MiniApp',
       description: 'A template for building mini-apps on Farcaster and Base',
     },
     other: {
