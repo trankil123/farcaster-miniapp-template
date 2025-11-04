@@ -23,6 +23,9 @@ export async function GET() {
       splashBackgroundColor: "#ffffff",
       webhookUrl: `${APP_URL}/api/webhook`,
     },
+    baseBuilder: {
+    "ownerAddress": "0xF76f1bb47719cdaE7014b7c275168f17a1BA76aA"
+  },
   };
 
   return NextResponse.json(farcasterConfig);
