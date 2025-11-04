@@ -57,8 +57,8 @@ contract SimplePayable {
     bool private _entered;
     modifier nonReentrant() {
         require(!_entered, "Reentrancy");
-        entered = true;
-        ;
+        _entered = true;
+        _;
         _entered = false;
     }
 
