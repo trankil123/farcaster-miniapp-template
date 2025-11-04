@@ -44,56 +44,41 @@ etape 1 :  cloner ce repository
 étape 2 : créer un contract avec remix  sur base mainet 
 avec ce code 
 
-/ SPDX-License-Identifier: MIT
+
+
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-/// @title SimplePayable (standalone, no imports)
-/// @notice Reçoit des paiements avec message et permet à l'owner de retirer.
-/// @dev Inclut un garde anti-réentrance minimaliste, sans OpenZeppelin.
 contract SimplePayable {
-    address public immutable owner;
+    address public owner;
 
-    // Garde anti-réentrance simple
-    bool private _entered;
-    modifier nonReentrant() {
-        require(!_entered, "Reentrancy");
-        _entered = true;
-        _;
-        _entered = false;
-    }
-
+    // Événement pour notifier qu'un paiement a été reçu
     event Received(address indexed sender, uint256 amount, string message);
-    event Withdrawn(address indexed to, uint256 amount);
 
+    // Définir l'owner lors du déploiement
     constructor() {
         owner = msg.sender;
     }
 
-    /// @notice Envoie un petit montant avec un message
+    // Fonction payable pour envoyer un message (optionnel)
     function pay(string calldata _message) external payable {
         require(msg.value > 0, "Send some ETH");
         emit Received(msg.sender, msg.value, _message);
     }
 
-    /// @notice Retire l’intégralité du solde du contrat vers _to (owner uniquement)
-    function withdraw(address payable _to) external nonReentrant {
+    // Retirer tout l'ETH — seulement l'owner
+    function withdraw(address payable _to) external {
         require(msg.sender == owner, "Only owner can withdraw");
         uint256 balance = address(this).balance;
         require(balance > 0, "No ETH to withdraw");
-
-        // Envoi du solde. Pas d’état après l’appel externe, garde anti-réentrance active.
-        (bool success, ) = _to.call{value: balance}("");
-        require(success, "Withdraw failed");
-
-        emit Withdrawn(_to, balance);
+        _to.transfer(balance);
     }
 
-    /// @notice Accepte les transferts directs
+    // ← Clé : fallback pour accepter les transferts directs d'ETH
     receive() external payable {
         emit Received(msg.sender, msg.value, "Direct ETH transfer");
     }
 }
-
 
 et le verifier ici https://basescan.org/verifyContract
 
