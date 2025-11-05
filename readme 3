@@ -1,0 +1,33 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract SimplePayable {
+    address public owner;
+
+    // Événement pour notifier qu'un paiement a été reçu
+    event Received(address indexed sender, uint256 amount, string message);
+
+    // Définir l'owner lors du déploiement
+    constructor() {
+        owner = msg.sender;
+    }
+
+    // Fonction payable pour envoyer un message (optionnel)
+    function pay(string calldata _message) external payable {
+        require(msg.value > 0, "Send some ETH");
+        emit Received(msg.sender, msg.value, _message);
+    }
+
+    // Retirer tout l'ETH — seulement l'owner
+    function withdraw(address payable _to) external {
+        require(msg.sender == owner, "Only owner can withdraw");
+        uint256 balance = address(this).balance;
+        require(balance > 0, "No ETH to withdraw");
+        _to.transfer(balance);
+    }
+
+    // ← Clé : fallback pour accepter les transferts directs d'ETH
+    receive() external payable {
+        emit Received(msg.sender, msg.value, "Direct ETH transfer");
+    }
+}
